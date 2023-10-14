@@ -1,19 +1,34 @@
 function validateWithModule10() {
-  let cedula = 40200346993;
-
   let array_cedula = cedula.toString().split("");
 
   let digitValid = Number.parseInt(array_cedula.pop());
 
-  let digit_pair = [];
-  let digit_odd = [];
+  let bi_array = [[], []];
 
+  // separa los numeros segun su indices pares e impares
   for (let i = 1; i <= array_cedula.length; i++) {
-    if (i % 2 == 0) digit_pair.push(array_cedula[i - 1] * 2);
-    else digit_odd.push(array_cedula[i - 1]);
+    if (i % 2 === 0) bi_array[0].push(array_cedula[i - 1] * 2);
+    else bi_array[1].push(array_cedula[i - 1] * 1);
   }
 
-  return { digit_pair, digit_odd };
+  // simplifico los numeros mayores a 9 en los subconjunto
+  bi_array = bi_array.map((subconjunto) =>
+    subconjunto.map((item) => reduceToOneDigit(item))
+  );
+
+  // guarda las suma da cada sub conjuntos
+  let array = bi_array.map((subconjunto) =>
+    subconjunto.reduce((acumulator, currentValue) => acumulator + currentValue)
+  );
+
+  // suma del total de los sub conjuntos
+  let result_array = array.reduce(
+    (acumulator, currentValue) => acumulator + currentValue
+  );
+
+  let digit_generate = result_array % 10 == 0 ? 0 : 10 - (result_array % 10);
+
+  return digit_generate === digitValid;
 }
 
 const reduceToOneDigit = (num) => {
@@ -25,8 +40,5 @@ const reduceToOneDigit = (num) => {
     return Number.parseInt(item);
   });
 
-  console.log(digits.reduce());
+  return digits.reduce((acumulator, currentValue) => acumulator + currentValue);
 };
-
-// console.log(validateWithModule10());
-reduceToOneDigit(11);
