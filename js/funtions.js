@@ -1,5 +1,7 @@
-function validateWithModule10() {
-  let array_cedula = cedula.toString().split("");
+function validateWithModule10(cedula) {
+  // let array_cedula = cedula.toString().split("");
+  console.log(cedula);
+  let array_cedula = cedula.split("");
 
   let digitValid = Number.parseInt(array_cedula.pop());
 

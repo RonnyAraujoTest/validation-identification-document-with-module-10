@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Module 10</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/funtions.js"></script>
+  </head>
+  <body>
+    <h1>Validador de cedula con Algoritmo Modulo 10</h1>
+    <form class="caja">
+      <fieldset>
+        <label
+          >Cedula
+          <input id="cedula" type="text" name="cedula" required />
+        </label>
+        <label id="feedback"></label>
+        <button id="validar" type="button">Validar</button>
+      </fieldset>
+    </form>
+    <script>
+      window.validar.addEventListener("click", () => {
+        let result = validateWithModule10(window.cedula.value);
+        if (result) {
+          window.feedback.classList.remove("invalidID");
+          window.feedback.classList.add("validID");
+          window.feedback.innerHTML = "Cedula Valida.";
+        } else {
+          window.feedback.classList.remove("validID");
+          window.feedback.classList.add("invalidID");
+          window.feedback.innerHTML = "Cedula Invalida.";
+        }
+      });
+    </script>
+  </body>
 </html>
