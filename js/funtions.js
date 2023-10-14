@@ -44,3 +44,22 @@ const reduceToOneDigit = (num) => {
 
   return digits.reduce((acumulator, currentValue) => acumulator + currentValue);
 };
+
+function handle() {
+  window.validar.addEventListener("click", () => {
+    let result = validateWithModule10(window.cedula.value);
+    if (result) {
+      window.feedback.classList.remove("invalidID");
+      window.feedback.classList.add("validID");
+      window.feedback.innerHTML = "Cedula Valida.";
+    } else {
+      window.feedback.classList.remove("validID");
+      window.feedback.classList.add("invalidID");
+      window.feedback.innerHTML = "Cedula Invalida.";
+    }
+  });
+}
+
+window.onload = (even) => {
+  handle();
+};
